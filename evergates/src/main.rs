@@ -16,7 +16,7 @@ struct User {
     age: i32,
 }
 
-async fn create_custom_details(
+async fn create_user(
     Json(payload): Json<User>,
     Extension(pool): Extension<sqlx::PgPool>,
 ) -> Result<Json<User>, (axum::http::StatusCode, String)> {
@@ -33,15 +33,15 @@ async fn create_custom_details(
     Ok(Json(payload))
 }
 
-async fn get_custom_details(
+async fn get_users(
     Extension(pool): Extension<sqlx::PgPool>,
 ) -> Result<Json<Vec<User>>, (axum::http::StatusCode, String)> {
-    let custom_details = sqlx::query_as!(User, "SELECT name, email, age FROM users")
+    let user = sqlx::query_as!(User, "SELECT name, email, age FROM users")
         .fetch_all(&pool)
         .await
         .map_err(|e| (axum::http::StatusCode::INTERNAL_SERVER_ERROR, e.to_string()))?;
 
-    Ok(Json(custom_details))
+    Ok(Json(user))
 }
 
 #[tokio::main]
@@ -56,7 +56,7 @@ async fn main() {
         .expect("Failed to create pool.");
 
     let app = Router::new()
-        .route("/custom-details", post(create_custom_details).get(get_custom_details))
+        .route("/custom-details", post(create_user).get(get_users))
         .layer(Extension(pool));
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
