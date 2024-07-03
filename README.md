@@ -58,6 +58,7 @@
     In the root of your project directory, create a file named `.env` with the following content :
      ```sh
      # Database connection URL
+     
      DATABASE_URL=postgres://your_username:your_password@localhost/my_db
      ```
 
@@ -85,10 +86,10 @@
 
 2. For the `POST` request to add a User :
 
-- Set the request type to `POST`
-- Enter the URL: `localhost:3000/users`
-- Set the request body to raw and select ``JSON`` format.
-- Enter the following `JSON` data :
+    - Set the request type to `POST`
+    - Enter the URL: `localhost:3000/users`
+    - Set the request body to raw and select ``JSON`` format.
+    - Enter the following `JSON` data :
 
     ```sh
      {
@@ -97,23 +98,23 @@
        "age": 30
     }   
     ```
-- Send the request 
+    - Send the request 
 
-    For the ``POST`` request, you should receive a response with the details you sent, confirming that they have been added to the database.
+        For the ``POST`` request, you should receive a response with the details you sent, confirming that they have been added to the database.
 
-We should have something like this :
+    We should have something like this :
 
 ![alt text](<Documentation/Screenshot 2024-07-03 034844.png>)
 
 3. For the `GET` request to retrieve added Users :
 
-- Create a new request.
-- Set the request type to `GET`.
-- Enter the URL : `localhost:3000/users`
-- Send the request 
+    - Create a new request.
+    - Set the request type to `GET`.
+    - Enter the URL : `localhost:3000/users`
+    - Send the request 
 
-    For the ``GET`` request, you should receive a list of all the custom details stored in the database.
+        For the ``GET`` request, you should receive a list of all the custom details stored in  the database.
 
-We should have something like this : 
+    We should have something like this : 
 
 ![alt text](<Documentation/Screenshot 2024-07-03 035616.png>)
