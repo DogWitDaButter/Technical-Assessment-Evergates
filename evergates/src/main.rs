@@ -56,7 +56,7 @@ async fn main() {
         .expect("Failed to create pool.");
 
     let app = Router::new()
-        .route("/custom-details", post(create_user).get(get_users))
+        .route("/users", post(create_user).get(get_users))
         .layer(Extension(pool));
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
